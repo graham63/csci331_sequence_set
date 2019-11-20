@@ -13,7 +13,7 @@ $(ODIR)/%.o: %.cpp $(DEPS)
 	$(CXX) -c -o $@ $< $(CXXFLAGS)
 
 app: $(OBJ)
-	g++ -o app $(SRC) -I$(IDIR) $(LIBS)
+	g++ -o seqSet $(SRC) -I$(IDIR) $(LIBS)
 
 .PHONY: clean
 
