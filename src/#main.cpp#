@@ -58,7 +58,6 @@ void deleteRecord();                                     //
 void modifyFieldInRecord();                              //
 void displayRecord();                                    //
 void displaySpecificField();                             //
-void openRecordsFromPath();                              //
 void rebuildTreeToUser();                                //
 void checkFileConsistency();                             //
 string checkFilePath(string filePath);                   //
@@ -68,9 +67,8 @@ string checkFilePath(string filePath);                   //
 int main(int argc, char *argv[])
 {
   //cleanDataSet("data_set.csv", "proper_data_set.csv");
-
   if(argc == 1)
-    givenDataSetPath = "data/data_set.csv";
+    givenDataSetPath = "data/proper_data_set.csv";
   else
     givenDataSetPath = checkFilePath(argv[1]);
 
@@ -98,7 +96,7 @@ int main(int argc, char *argv[])
       try
       {
         getline(cin, input);
-        option = stringToLong(input);
+        option = std::stoi(input);
         isTryingToGetInput = false;
       }
       catch(...)
@@ -377,7 +375,7 @@ void displaySpecificField() {
     while(isTryingToGetInput) {
       try {
         getline(cin, fieldName);
-        field = stringToLong(fieldName);
+        field = std::stoi(fieldName);
         isTryingToGetInput = false;
       } catch(...) {
         cout << "Type online numbers: ";
