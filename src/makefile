@@ -1,7 +1,7 @@
 CXX = g++
 IDIR = ../include
 ODIR = obj
-CXXFLAGS=-g -Wall -std=c++11 -I$(IDIR) -W -Wall -w
+CXXFLAGS=-g -Wall -std=c++17 -I$(IDIR) -W -Wall -w
 LIBS = -lm -std=c++11
 _DEPS = $(wildcard *.h)
 DEPS = $(patsubst %,$(IDIR)/%,$(_DEPS))

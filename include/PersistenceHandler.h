@@ -3,20 +3,9 @@
 
 #include "SequenceSet.h"
 #include <string>
-#include "BPlusTree.h"
 
 /**
- * It gets a path for some stored SequenceSet states
- * to bufferize it, put inside a B+ tree object
- * and returns it;
- *
- * @param path to read
- * @return a B+ tree object
- */
-BPlusTree* bufferizeDataSetToTree(std::string dataSetPath);
-
-/**
- * It gets a path for a stored SequenceSet state
+ * @brief Gets a path for a stored SequenceSet state
  * to bufferize it, put inside a SequenceSet object
  * and returns it;
  *
@@ -26,7 +15,7 @@ BPlusTree* bufferizeDataSetToTree(std::string dataSetPath);
 SequenceSet* bufferizeDataSet(std::string dataSetPath);
 
 /**
- * It gets a SequenceSet's state and a path to a file
+ * @brief Gets a SequenceSet's state and a path to a file
  * and writes it inside;
  *
  * @param SequenceSet object
