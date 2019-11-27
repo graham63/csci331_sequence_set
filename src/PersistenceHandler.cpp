@@ -2,7 +2,6 @@
 #include "../include/RecordHandler.h"
 #include "../include/SequenceSet.h"
 #include "../include/Record.h"
-//#include "../include/BPlusTree.h"
 #include <string>
 #include <iostream>
 #include <set>
@@ -31,50 +30,6 @@ string recordToCSV(Record* record);
  * @return a string formated in data set's standard
  */
 string doubleToStringThis(double number);
-
-/*
-BPlusTree* bufferizeDataSetToTree(string dataSetPath) {
-  int sequenceSetIndex = 0;
-  const int MAX_BLOCKS = 10;
-  const int MAX_SEQUENCE_SETS = 10;
-  const int MAX_RECORDS_PER_BLOCK = 1000;
-  long blocksCounter = 0;
-  long recordsCounter = 0;
-  BPlusTree* tree = new BPlusTree(true, NULL, INITIAL_TREE_ORDER);
-  for(int i = 0; i < 10; i++)
-    tree = tree->insert(i, new SequenceSet());
-  //cout << "Values: " << tree->getKeys().size() << endl;
-  //getchar();
-  ifstream inputStream;
-  inputStream.open(dataSetPath.c_str());
-  SequenceSet* sequenceSet = tree->search(sequenceSetIndex);
-  if(inputStream.is_open()) {
-    string line;
-    while(!inputStream.eof()) {
-      getline(inputStream, line);
-      if(line == "") {
-        getline(inputStream, line);
-        if(line == "")
-          break;
-      }
-      sequenceSet->addRecord(csvRecordParser(line));
-      recordsCounter++;
-      if(recordsCounter == MAX_RECORDS_PER_BLOCK) {
-        blocksCounter++;
-        if(blocksCounter == MAX_BLOCKS) {
-          sequenceSetIndex++;
-          if(sequenceSetIndex < MAX_SEQUENCE_SETS)
-            sequenceSet = tree->search(sequenceSetIndex);
-          else
-            tree = rebuildTree(tree);
-        }
-      }
-    }
-  }
-  inputStream.close();
-  return tree;
-}
-*/
 
 SequenceSet* bufferizeDataSet(string dataSetPath) {
   ifstream inputStream;

@@ -9,7 +9,6 @@
 #include <sstream>
 #include <cmath>
 #include <iterator>
-//#include "../include/BPlusTree.h"
 #include "../include/utils.h"
 
 using namespace std;
@@ -20,9 +19,8 @@ using namespace std;
 #define MODIFY_FIELD_IN_RECORD 3
 #define DISPLAY_SPECIFIC_FIELD 4
 #define DISPLAY_RECORD 5
-#define CLOSE_APP 8
-#define REBUILD_TREE 6
-#define CHECK_CONSISTENCY 7
+#define CHECK_CONSISTENCY 6
+#define CLOSE_APP 7
 const string DATA_SET_PATH = "data/data_set.csv";
 string givenDataSetPath;
 string backupDataSetPath = "data/data_set_backup.csv";
@@ -30,9 +28,6 @@ string backupDataSetPath = "data/data_set_backup.csv";
 int currentKey = 0;
 
 #define DEBUG if(true)
-
-//B+ tree reference
-//BPlusTree* tree;
 
 // Sequence set object used
 SequenceSet* sequenceSet;
@@ -59,7 +54,6 @@ void modifyFieldInRecord();                              //
 void displayRecord();                                    //
 void displaySpecificField();                             //
 void openRecordsFromPath();                              //
-//void rebuildTreeToUser();                                //
 void checkFileConsistency();                             //
 string checkFilePath(string filePath);                   //
 ///////////////////////////////////////////////////////////
@@ -74,7 +68,6 @@ int main(int argc, char *argv[])
   else
     givenDataSetPath = checkFilePath(argv[1]);
 
-  //tree = bufferizeDataSetToTree(givenDataSetPath);
   sequenceSet = bufferizeDataSet(givenDataSetPath);
   createDataSetBackup(sequenceSet);
   bool shouldRun = true;
@@ -134,9 +127,6 @@ int main(int argc, char *argv[])
     case CHECK_CONSISTENCY:
       checkFileConsistency();
       break;
-    case REBUILD_TREE:
-      // rebuildTreeToUser();
-      break;
     default:
       shouldShowFeedBackMessage = true;
       feedBackMessage = "Invalid paramenter";
@@ -145,7 +135,6 @@ int main(int argc, char *argv[])
   }// End while(shouldRun)
   updateDataSet(sequenceSet, givenDataSetPath);
   delete sequenceSet;
-  //delete tree;
 
   return 0;
 
@@ -190,8 +179,8 @@ void insertRecord() {
   getchar();
   Record* givenRecord = new Record(zipCode, state, county, placeName, latitute, longitude);
   DEBUG cout << givenRecord->toString();
-  sequenceSet->addRecord(givenRecord); //memoria
-  appendRecord(givenRecord, givenDataSetPath); // disco
+  sequenceSet->addRecord(givenRecord); //memory
+  appendRecord(givenRecord, givenDataSetPath); // disc
 }
 
 void deleteRecord() {
@@ -237,25 +226,7 @@ void checkFileConsistency() {
     feedBackMessage = "There are no records inside the set.";
   }
 }
-/*
-void rebuildTreeToUser() {
-  if(sequenceSet->getTotalRecordsInsideSequenceSet() > 0) {
-    cout << "Type new b+ tree order: ";
-    long order;
-    cin >> order;
-    getchar();
-    while(order < 2) {
-      cout << "The B+ tree order should be greater than 2, type it again: ";
-      cin >> order;
-      getchar();
-    }
-    tree = rebuildTree(tree, order);
-  } else {
-    shouldShowFeedBackMessage = true;
-    feedBackMessage = "There are no records inside the set.";
-  }
-}
-*/
+
 void modifyFieldInRecord() {
   if(sequenceSet->getTotalRecordsInsideSequenceSet() > 0) {
     cout << "Type record zip code: ";
@@ -438,7 +409,6 @@ void showMenu() {
   cout << "3. Modify a field in a record\n";
   cout << "4. Display a specific field in a record\n";
   cout << "5. Display a record\n";
-  cout << "6. Rebuild tree\n";
-  cout << "7. Check record's file consistency\n";
-  cout << "8. Close app\n";
+  cout << "6. Check record's file consistency\n";
+  cout << "7. Close app\n";
 }

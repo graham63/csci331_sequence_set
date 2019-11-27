@@ -12,7 +12,7 @@ using namespace std;
 long zipCodeToFind = 0;
 
 /**
- * @bried a helpful function used in Records searching.
+ * @brief a helpful function used in Records searching.
  * Return true if given Record is equal to zipCodeToFind
  * variable, and false if not.
  *
