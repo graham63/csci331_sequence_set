@@ -2,7 +2,7 @@
 #include "../include/RecordHandler.h"
 #include "../include/SequenceSet.h"
 #include "../include/Record.h"
-#include "../include/BPlusTree.h"
+//#include "../include/BPlusTree.h"
 #include <string>
 #include <iostream>
 #include <set>
@@ -14,7 +14,7 @@
 using namespace std;
 
 /**
- * Auxiliar function that gets a record and
+ * @brief Auxiliar function that gets a record and
  * parses it's state into a csv record.
  *
  * @param a Record object
@@ -23,7 +23,7 @@ using namespace std;
 string recordToCSV(Record* record);
 
 /**
- * Auxiliar function to get a double and format
+ * @brief Auxiliar function to get a double and format
  * it into the used format for latitute and longitude
  * in data set.
  *
@@ -32,11 +32,12 @@ string recordToCSV(Record* record);
  */
 string doubleToStringThis(double number);
 
+/*
 BPlusTree* bufferizeDataSetToTree(string dataSetPath) {
   int sequenceSetIndex = 0;
   const int MAX_BLOCKS = 10;
   const int MAX_SEQUENCE_SETS = 10;
-  const int MAX_RECORS_PER_BLOCK = 1000;
+  const int MAX_RECORDS_PER_BLOCK = 1000;
   long blocksCounter = 0;
   long recordsCounter = 0;
   BPlusTree* tree = new BPlusTree(true, NULL, INITIAL_TREE_ORDER);
@@ -58,7 +59,7 @@ BPlusTree* bufferizeDataSetToTree(string dataSetPath) {
       }
       sequenceSet->addRecord(csvRecordParser(line));
       recordsCounter++;
-      if(recordsCounter == MAX_RECORS_PER_BLOCK) {
+      if(recordsCounter == MAX_RECORDS_PER_BLOCK) {
         blocksCounter++;
         if(blocksCounter == MAX_BLOCKS) {
           sequenceSetIndex++;
@@ -73,6 +74,7 @@ BPlusTree* bufferizeDataSetToTree(string dataSetPath) {
   inputStream.close();
   return tree;
 }
+*/
 
 SequenceSet* bufferizeDataSet(string dataSetPath) {
   ifstream inputStream;

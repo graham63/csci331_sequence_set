@@ -9,7 +9,7 @@
 #include <sstream>
 #include <cmath>
 #include <iterator>
-#include "../include/BPlusTree.h"
+//#include "../include/BPlusTree.h"
 #include "../include/utils.h"
 
 using namespace std;
@@ -23,7 +23,7 @@ using namespace std;
 #define CLOSE_APP 8
 #define REBUILD_TREE 6
 #define CHECK_CONSISTENCY 7
-const string DATA_SET_PATH = "data/proper_data_set.csv";
+const string DATA_SET_PATH = "data/data_set.csv";
 string givenDataSetPath;
 string backupDataSetPath = "data/data_set_backup.csv";
 
@@ -32,7 +32,7 @@ int currentKey = 0;
 #define DEBUG if(true)
 
 //B+ tree reference
-BPlusTree* tree;
+//BPlusTree* tree;
 
 // Sequence set object used
 SequenceSet* sequenceSet;
@@ -59,7 +59,7 @@ void modifyFieldInRecord();                              //
 void displayRecord();                                    //
 void displaySpecificField();                             //
 void openRecordsFromPath();                              //
-void rebuildTreeToUser();                                //
+//void rebuildTreeToUser();                                //
 void checkFileConsistency();                             //
 string checkFilePath(string filePath);                   //
 ///////////////////////////////////////////////////////////
@@ -74,8 +74,8 @@ int main(int argc, char *argv[])
   else
     givenDataSetPath = checkFilePath(argv[1]);
 
-  tree = bufferizeDataSetToTree(givenDataSetPath);
-  sequenceSet = tree->search(currentKey);
+  //tree = bufferizeDataSetToTree(givenDataSetPath);
+  sequenceSet = bufferizeDataSet(givenDataSetPath);
   createDataSetBackup(sequenceSet);
   bool shouldRun = true;
   while(shouldRun)
@@ -135,7 +135,7 @@ int main(int argc, char *argv[])
       checkFileConsistency();
       break;
     case REBUILD_TREE:
-      rebuildTreeToUser();
+      // rebuildTreeToUser();
       break;
     default:
       shouldShowFeedBackMessage = true;
@@ -145,7 +145,7 @@ int main(int argc, char *argv[])
   }// End while(shouldRun)
   updateDataSet(sequenceSet, givenDataSetPath);
   delete sequenceSet;
-  delete tree;
+  //delete tree;
 
   return 0;
 
@@ -237,7 +237,7 @@ void checkFileConsistency() {
     feedBackMessage = "There are no records inside the set.";
   }
 }
-
+/*
 void rebuildTreeToUser() {
   if(sequenceSet->getTotalRecordsInsideSequenceSet() > 0) {
     cout << "Type new b+ tree order: ";
@@ -255,7 +255,7 @@ void rebuildTreeToUser() {
     feedBackMessage = "There are no records inside the set.";
   }
 }
-
+*/
 void modifyFieldInRecord() {
   if(sequenceSet->getTotalRecordsInsideSequenceSet() > 0) {
     cout << "Type record zip code: ";

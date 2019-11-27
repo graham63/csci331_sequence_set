@@ -12,8 +12,8 @@ using namespace std;
 long zipCodeToFind = 0;
 
 /**
- * It's a helpfull function used in Records searching.
- * It true if given Record is equal to zipCodeToFind
+ * @bried a helpful function used in Records searching.
+ * Return true if given Record is equal to zipCodeToFind
  * variable, and false if not.
  *
  * @param a Record object
